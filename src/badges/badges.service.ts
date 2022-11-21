@@ -1,4 +1,4 @@
-import { HttpException, Injectable } from '@nestjs/common';
+import { HttpException, Injectable, UseGuards } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateBadgeDto } from './dto/create-badge.dto';
 import { UpdateBadgeDto } from './dto/update-badge.dto';
@@ -14,7 +14,7 @@ export class BadgesService {
 
     if(badgeExists) throw new HttpException('badge already exists', 400);
     
-    if(file) throw new HttpException('error', 400)
+    if(!file) throw new HttpException('error', 400)
     
     await this.sendImageToR2(file, createBadgeDto.name);
 

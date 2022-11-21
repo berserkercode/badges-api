@@ -8,5 +8,6 @@ import { PeopleService } from 'src/people/people.service';
   imports: [PrismaModule],
   controllers: [UsersController],
   providers: [UsersService, PeopleService],
+  exports: [UsersService],
 })
 export class UsersModule {}
