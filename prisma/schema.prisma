@@ -44,8 +44,8 @@ model Badge {
 model PersonBadge {
   id            Int      @id @default(autoincrement())
   person_id     Int   
-  badges_id     Int
-  Badge         Badge    @relation(fields: [badges_id], references: [id])
+  badge_id     Int
+  Badge         Badge    @relation(fields: [badge_id], references: [id])
   Person        Person   @relation(fields: [person_id], references: [id])
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt

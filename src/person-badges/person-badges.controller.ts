@@ -1,7 +1,11 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
 import { PersonBadgesService } from './person-badges.service';
 import { CreatePersonBadgeDto } from './dto/create-person-badge.dto';
 import { UpdatePersonBadgeDto } from './dto/update-person-badge.dto';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth-guard';
+import { PoliceGuard } from 'src/decorators/permissions/permissions.guard';
+import { Permission } from 'src/decorators/permissions/permissions.decorator';
+import { PermissisonEnum } from 'src/decorators/permissions/enum/permissions.enum';
 
 @Controller('person-badges')
 export class PersonBadgesController {

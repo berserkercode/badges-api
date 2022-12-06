@@ -1,6 +1,9 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, UploadedFile, UseGuards } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth-guard';
+import { PermissisonEnum } from 'src/decorators/permissions/enum/permissions.enum';
+import { Permission } from 'src/decorators/permissions/permissions.decorator';
+import { PoliceGuard } from 'src/decorators/permissions/permissions.guard';
 import { BadgesService } from './badges.service';
 import { CreateBadgeDto } from './dto/create-badge.dto';
 import { UpdateBadgeDto } from './dto/update-badge.dto';
@@ -22,6 +25,8 @@ export class BadgesController {
   }
 
   @Get(':id')
+  @Permission(PermissisonEnum.READ_BADGES)
+  @UseGuards(JwtAuthGuard, PoliceGuard)
   findOne(@Param('id') id: string) {
     return this.badgesService.findOne(+id);
   }
