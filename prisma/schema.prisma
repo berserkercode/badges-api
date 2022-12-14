@@ -43,10 +43,17 @@ model Badge {
 
 model PersonBadge {
   id            Int      @id @default(autoincrement())
-  person_id     Int   
-  badge_id     Int
+  person_id     Int      
+  badge_id      Int      
   Badge         Badge    @relation(fields: [badge_id], references: [id])
   Person        Person   @relation(fields: [person_id], references: [id])
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model CommingSoonEmail {
+  id            Int      @id @default(autoincrement())
+  email         String   @unique
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 }
