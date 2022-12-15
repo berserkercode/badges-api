@@ -7,7 +7,6 @@ import { UpdateCommingSoonEmailDto } from './dto/update-comming-soon-email.dto';
 export class CommingSoonEmailsService {
   constructor(
     private readonly prisma: PrismaService,
-    private readonly commingSoonEmailsService: CommingSoonEmailsService,
   ) {}
   create(createCommingSoonEmailDto: CreateCommingSoonEmailDto) {
     return this.prisma.commingSoonEmail.create({ data: createCommingSoonEmailDto });
